@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link th:href="@{/css/navbar.css}" rel="stylesheet" media="screen"/>
+</head>
+<style>
+    body{
+        font-family: 'Andada Pro', serif;
+    }
+
+    .main{
+        display: flex;
+        flex-direction: row;
+        height: 75vh;
+        column-gap: 1vw;
+        margin-top: 1vh;
+    }
+
+    .product-container {
+
+        display: flex;
+        justify-content: center;
+        border-radius: 15px;
+    }
+    .description-container {
+        height: 75vh;
+        width: 41vw;
+        background: #B7D0DE;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 15px;
+
+    }
+
+    .product-image{
+        height: 50vh;
+        width: 100%;
+        background-image: url(https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 10px;
+    }
+
+    .purchase{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        text-align: center;
+        background:#A7BED3;;
+        border-radius: 15px;
+        column-gap: 1vh;
+
+    }
+    .quantity {
+
+        border-radius: 15px;
+        text-align: left;
+    }
+    .buy {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        opacity: 75%;
+        box-shadow: 2px 4px 4px grey;
+        cursor: pointer;
+        color: white;
+        border-radius: 15px;
+        width: 30%;
+    }
+
+    .buy:hover{
+        opacity: 50%;
+    }
+
+    .checkout{
+        background: cadetblue;
+        display: flex;
+        margin-top: 1vh;
+        border-radius: 15px;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        box-shadow: 2px 4px 4px grey;
+    }
+
+    .checkout:hover{
+        opacity: 75%;
+    }
+</style>
+
+<body>
+<nav th:replace="fragments/navbar :: navbar">
+
+</nav>
+
+<div class="container">
+  <div class="row-lg-12 breadcrumbs">
+  </div>
+  <div class="row-lg-12 main">
+    <div class="col-lg-6 product-container">
+      <div class="row product-image">
+        image
+      </div>
+    </div>
+    <div>
+      <div class="row-lg-6 description-container">
+        <div class="row-lg-6 product-information">
+          <div>
+            <h3>Product Name</h3>
+          </div>
+        </div>
+        <div>
+          <h3>Specs:</h3>
+          <ul>
+            <li>Length</li>
+            <li>Weight</li>
+            <li>Max capacity</li>
+          </ul>
+        </div>
+        <div class="row-lg-6 price">
+          <div>
+            <h3>Price</h3>
+          </div>
+        </div>
+        <div class="col-lg-12 purchase">
+          <div class="row-lg-3 quantity">
+            <div>
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" name="quantity" min="1" max="10">
+            </div>
+          </div>
+          <div class="row-lg-4 buy">
+            <div>
+              Add to Cart
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row-lg-6 checkout">
+        Checkout
+      </div>
+    </div>
+  </div>
+</div>
+<script th:inline="javascript">
+   const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+            //toggle view
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+                //animate Links
+                navLinks.forEach((link, index) =>{
+                if(link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`;
+                }
+                });
+
+            //burger animation
+                burger.classList.toggle('toggle');
+            });
+
+
+        }
+        navSlide();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>

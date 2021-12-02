@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product list</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link th:href="@{/css/navbar.css}" rel="stylesheet" media="screen"/>
+</head>
+<style>
+    body{
+        font-family: 'Andada Pro', serif;
+    }
+
+    .products{
+
+        height: 100vh;
+        width: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: center;
+        flex-direction: row;
+        border-radius: 15px;
+        column-gap: 1vw;
+    }
+
+    .product-container{
+        display: flex;
+        flex-direction: column;
+        background-color: #B7D0DE;
+        border-radius: 10px;
+    }
+
+    .button-row{
+        display: flex;
+        justify-content: space-evenly;
+        background: #B7D0DE;
+        border-radius: 15px;
+    }
+    .image1{
+        height: 30vh;
+        width: 100%;
+        background-image: url(https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 10px;
+        align-self: center;
+    }
+
+    .image2{
+        height: 35vh;
+        width: 100%;
+        background-image: url(https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 10px;
+        align-self: center;
+    }
+    .specs{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .buy{
+        background: black;
+        opacity: 75%;
+        box-shadow: 2px 2px 2px grey;
+        cursor: pointer;
+        color: white;
+        border-radius: 15px;
+        margin-right: 1vw;
+    }
+
+    .buy:hover{
+        opacity: 50%;
+    }
+
+
+</style>
+<body>
+<nav th:replace="fragments/navbar :: navbar">
+
+</nav>
+<div class="container">
+  <div class="row-lg-12 breadcrumbs">
+  </div>
+  <div class="col-lg-12 products">
+    <div class="col-lg-3 product-container">
+      <div class="row-lg-12 image1">
+      </div>
+      <div class="row-lg-12 specs">
+        <div class="col-lg-1">
+          <p>Brand</p>
+        </div>
+        <div class="col-lg-1">
+          <p>Model</p>
+        </div>
+      </div>
+      <div class="row-lg-12 button-row">
+        <div class="col-lg-6">
+          <div class="buy">Add to Cart</div>
+        </div>
+        <div class="col-lg-4 price">
+          Price
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 product-container">
+      <div class="row-lg-12 image1">
+      </div>
+      <div class="row-lg-12 specs">
+        <div class="col-lg-1">
+          <p>Brand</p>
+        </div>
+        <div class="col-lg-1">
+          <p>Model</p>
+        </div>
+      </div>
+      <div class="row-lg-12 button-row">
+        <div class="col-lg-6">
+          <div class="buy">Add to Cart</div>
+        </div>
+        <div class="col-lg-4 price">
+          Price
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 product-container">
+      <div class="row-lg-12 image1">
+      </div>
+      <div class="row-lg-12 specs">
+        <div class="col-lg-1">
+          <p>Brand</p>
+        </div>
+        <div class="col-lg-1">
+          <p>Model</p>
+        </div>
+      </div>
+      <div class="row-lg-12 button-row">
+        <div class="col-lg-6">
+          <div class="buy">Add to Cart</div>
+        </div>
+        <div class="col-lg-4 price">
+          Price
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 product-container">
+      <div class="row-lg-12 image1">
+      </div>
+      <div class="row-lg-12 specs">
+        <div class="col-lg-1">
+          <p>Brand</p>
+        </div>
+        <div class="col-lg-1">
+          <p>Model</p>
+        </div>
+      </div>
+      <div class="row-lg-12 button-row">
+        <div class="col-lg-6">
+          <div class="buy">Add to Cart</div>
+        </div>
+        <div class="col-lg-4 price">
+          Price
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 product-container">
+      <div class="row-lg-12 image1">
+      </div>
+      <div class="row-lg-12 specs">
+        <div class="col-lg-1">
+          <p>Brand</p>
+        </div>
+        <div class="col-lg-1">
+          <p>Model</p>
+        </div>
+      </div>
+      <div class="row-lg-12 button-row">
+        <div class="col-lg-6">
+          <div class="buy">Add to Cart</div>
+        </div>
+        <div class="col-lg-4 price">
+          Price
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 product-container">
+      <div class="row-lg-12 image1">
+      </div>
+      <div class="row-lg-12 specs">
+        <div class="col-lg-1">
+          <p>Brand</p>
+        </div>
+        <div class="col-lg-1">
+          <p>Model</p>
+        </div>
+      </div>
+      <div class="row-lg-12 button-row">
+        <div class="col-lg-6">
+          <div class="buy">Add to Cart</div>
+        </div>
+        <div class="col-lg-4 price">
+          Price
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script th:inline="javascript">
+   const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+            //toggle view
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+                //animate Links
+                navLinks.forEach((link, index) =>{
+                if(link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`;
+                }
+                });
+
+            //burger animation
+                burger.classList.toggle('toggle');
+            });
+
+
+        }
+        navSlide();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>

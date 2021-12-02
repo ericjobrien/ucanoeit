@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link th:href="@{/css/navbar.css}" rel="stylesheet" media="screen"/>
+</head>
+
+<style>
+    body{
+        font-family: 'Andada Pro', serif;
+    }
+
+    .add-container{
+        background-color: #B7D0DE;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        column-gap: 1vh;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        border-radius: 15px;
+
+    }
+
+    .add-product-form {
+        width: 100%
+    }
+
+    .add-product-text {
+        background-color: #A7BED3;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1vh;
+        border-radius: 15px;
+        color: white;
+    }
+
+    table {
+        display: flex;
+        justify-content: center;
+    }
+
+    .customer-table-text {
+        margin-top: 2vh;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        background: #B7D0DE;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .customer-table-text-title {
+        display: flex;
+        justify-content: center;
+        background: #A7BED3;
+        border-radius: 15px;
+        width: 35%;
+    }
+
+<!--navbar css below-->
+
+</style>
+<body>
+<nav th:replace="fragments/navbar :: navbar">
+
+</nav>
+
+<div class="container">
+  <div class="row-lg-12">
+    <div class="row-lg-12 add-container">
+      <div>
+        <div class="col-lg-6 add-product-form">
+          <div class="row-lg-3 add-product-text">
+            <h3>Create New Product</h3>
+          </div>
+          <form>
+            <div class="row-lg-12 input-group mb-3">
+              <label class="input-group-text">Product Category Id</label>
+              <input type="number" id="product-category-id" name="product-category-id" class="form-control">
+            </div>
+            <div class="row-lg-12 input-group mb-3">
+              <span class="input-group-text">Brand Id</span>
+              <input type="number" id="brand-id" name="brand-id" class="form-control">
+            </div>
+            <div class="row-lg-12 input-group mb-3">
+              <span class="input-group-text">Product Name</span>
+              <input type="text" id="product-name" name="product-name" class="form-control">
+            </div>
+            <div class="row-lg-12 input-group mb-3">
+              <span class="input-group-text">Width</span>
+              <input type="number" id="width" name="width" class="form-control">
+            </div>
+            <div class="row-lg-12 input-group mb-3">
+              <span class="input-group-text">Length</span>
+              <input type="number" id="length" name="length" class="form-control">
+            </div>
+            <div class="row-lg-12 input-group mb-3">
+              <span class="input-group-text">Weight</span>
+              <input type="number" id="weight" name="weight" class="form-control">
+            </div>
+            <div class="row-lg-12 input-group mb-3">
+              <span class="input-group-text">Max Capacity</span>
+              <input type="number" id="max-capacity" name="max-capacity" class="form-control">
+            </div>
+            <div class="row-lg-12 input-group mb-3">
+              <span class="input-group-text">Price</span>
+              <input type="number" id="price" name="price" class="form-control">
+            </div>
+            <div class="row-lg-12 input-group mb-3">
+              <span class="input-group-text">Image Url</span>
+              <input type="url" id="image-url" name="image-url" class="form-control" >
+            </div>
+            <div class="row-lg-8 add-button">
+              <button type="submit">Add Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+    <div class="row-lg-12 table-container">
+      <div>
+        <table class="table table-dark table-striped">
+          <tr>
+            <td>Product Id</td>
+            <td>Product Category Id</td>
+            <td>Brand Id</td>
+            <td>Product Name</td>
+            <td>Width</td>
+            <td>Length</td>
+            <td>Weight</td>
+            <td>Max Capacity</td>
+            <td>Price</td>
+            <td><button hidden="true">update</button>Update</td>
+            <td><button hidden="true">delete</button>Delete</td>
+          </tr>
+        </table>
+      </div>
+      <div class="row-lg-12 customer-table-container">
+        <div class="row-lg-6 customer-table-text">
+          <div class="row-lg-6 customer-table-text-title">
+            <h2>Customer Table</h2>
+          </div>
+        </div>
+
+        <table class="table table-dark table-striped">
+          <tr>
+            <td>Email</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Password</td>
+            <td>Admin</td>
+          </tr>
+          <tr th:each="customer : ${customers}">
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.firstname}"></td>
+            <td th:text="${customer.lastname}"></td>
+            <td th:text="${customer.password}"></td>
+            <td th:text="${customer.admin}"></td>
+            <td><button>Update</button></td>
+            <td><button>Delete</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script th:inline="javascript">
+   const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+            //toggle view
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+                //animate Links
+                navLinks.forEach((link, index) =>{
+                if(link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`;
+                }
+                });
+
+            //burger animation
+                burger.classList.toggle('toggle');
+            });
+
+
+        }
+        navSlide();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>

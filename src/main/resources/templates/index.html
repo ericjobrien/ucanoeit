@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCanoeIt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+
+<style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 8vh;
+            font-family: 'Andada Pro', serif;
+            background: #A7BED3;
+        }
+
+        .logo {
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 20px;
+        }
+
+        .nav-links {
+
+            display: flex;
+            justify-content: space-around;
+            width: 35%;
+            /* width will adjust nav lists distance as the media type changes */
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .burger {
+            display: none;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        @media screen and (max-width:1024px) {
+            .nav-links {
+                width: 20%;
+                /* width will adjust nav lists distance as the media type changes */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+        }
+
+        @media screen and (max-width:768px) {
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                height: 92vh;
+                top: 8vh;
+                background: #A7BED3;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+                transform: translateX(100%);
+                transition: transform 0.6s ease-in;
+            }
+
+            .nav-links li {
+                opacity: 85%;
+            }
+
+            .burger {
+                display: block;
+                cursor: pointer;
+            }
+        }
+
+        .nav-active {
+            transform: translateX(0%);
+        }
+
+        @keyframes navlinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .toggle .line2 {
+            opacity: 0;
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Everything Above This Line is For the Nav */
+
+        body {
+            font-family: 'Andada Pro', serif;
+        }
+
+        .advertisement{
+            margin-top: 1vh;
+            height: 35vh;
+            background: url(https://images.unsplash.com/photo-1446717157973-03f219469f59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80);
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .hidden{
+            visibility: hidden;
+        }
+
+        .words{
+            color: white;
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Andada Pro', serif;
+            background: black;
+            opacity: 25%;
+        }
+
+        .products{
+            height: 50vh;
+            text-align: center;
+            margin-top: 1vh;
+        }
+
+        #canoes-img{
+            background: url(https://images.unsplash.com/photo-1586699253884-e199770f63b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+            height: 50vh;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        #kayaks-img{
+            background: url(https://images.unsplash.com/photo-1562388831-a7a060b9c1fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=718&q=80);
+            height: 50vh;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+
+
+    </style>
+
+<body>
+<nav th:replace="fragments/navbar :: navbar">
+    <div class="logo">
+        <h4>UCanoeIt</h4>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Cart</a></li>
+    </ul>
+    <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="advertisement">
+        <div class="row-lg-12 words">
+            <div class="col-lg-4">
+                <h1>Adventure</h1>
+            </div>
+            <div class="col-lg-4">
+                <h1>Awaits</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row products">
+        <div class="col-lg-6 canoes">
+            <div class="col-lg-12 canoes">
+                <a th:href="@{/product-list}">
+                    <div class="col-lg-12" id="canoes-img">
+                    </div>
+                </a>
+                <h2>Canoes</h2>
+            </div>
+        </div>
+        <div class="col-lg-6 kayaks">
+            <a th:href="@{/product-list}">
+                <div class="col-lg-12" id="kayaks-img">
+                </div>
+            </a>
+                <h2>Kayaks</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+            const navSlide = () => {
+                const burger = document.querySelector('.burger');
+                const nav = document.querySelector('.nav-links');
+                const navLinks = document.querySelectorAll('.nav-links li');
+
+                //toggle view
+                burger.addEventListener('click', () => {
+                    nav.classList.toggle('nav-active');
+                    //animate Links
+                    navLinks.forEach((link, index) => {
+                        if (link.style.animation) {
+                            link.style.animation = '';
+                        } else {
+                            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`;
+                        }
+                    });
+
+                    //burger animation
+                    burger.classList.toggle('toggle');
+                });
+
+
+            }
+            navSlide();
+        </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
+
+</body>
+</html>

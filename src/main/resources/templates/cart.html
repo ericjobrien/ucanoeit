@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link th:href="@{/css/navbar.css}" rel="stylesheet" media="screen"/>
+</head>
+
+<style>
+
+    body{
+        font-family: 'Andada Pro', serif;
+    }
+      .main{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: 75vh;
+        column-gap: 1vw;
+        margin-top: 1vh;
+    }
+
+    .product-container{
+        height: 75vh;
+        border-radius: 15px;
+    }
+
+
+    .product-card {
+        box-shadow: 2px 4px 4px grey;
+    }
+    .card-body{
+        margin-top: 2vh;
+    }
+    .remove {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        opacity: 75%;
+        box-shadow: 2px 4px 4px grey;
+        cursor: pointer;
+        color: white;
+        border-radius: 15px;
+        width: 50%;
+        align-self: center;
+    }
+
+    .card-body div:hover{
+        opacity: 50%;
+    }
+
+    .card-body button{
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    }
+
+    .order-summary-container{
+        margin-top: 10vh;
+        background: #B7D0DE;
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 15px;
+    }
+
+    .order-summary-information{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .order-summary-text{
+        display: flex;
+        justify-content: center;
+        background-color:#A7BED3;
+        border-radius: 15px;
+        align-items: center;
+        color: white;
+    }
+
+    .checkout-container{
+        background: #A7BED3;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .checkout{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        opacity: 75%;
+        box-shadow: 2px 4px 4px grey;
+        cursor: pointer;
+        color: white;
+        border-radius: 15px;
+        align-self: center;
+    }
+
+    .checkout:hover{
+        opacity: 50%;
+    }
+</style>
+<body>
+
+<nav th:replace="fragments/navbar :: navbar">
+
+</nav>
+<div class="row-lg-12 breadcrumbs">
+</div>
+<div class="container">
+  <div class="row-lg-12 main">
+    <div class="col-lg-6 product-container">
+      <div class="row-lg-3">
+        <h3>Items in Cart</h3>
+      </div>
+      <div class="card mb-3 product-card" style="max-width: 470px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div>
+                <button type="button" class="btn-close" aria-label="Close"></button>
+              </div>
+              <div>
+                <h5 class="card-title">Product Name</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="remove">
+          Remove from Cart
+        </div>
+      </div>
+      <div class="card mb-3 product-card" style="max-width: 470px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div>
+                <button type="button" class="btn-close" aria-label="Close"></button>
+              </div>
+              <div>
+                <h5 class="card-title">Product Name</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="remove">
+          Remove from Cart
+        </div>
+      </div>
+      <div class="card mb-3 product-card" style="max-width: 470px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div>
+                <button type="button" class="btn-close" aria-label="Close"></button>
+              </div>
+              <div>
+                <h5 class="card-title">Product Name</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="remove">
+          Remove from Cart
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 order-summary-container">
+      <div class="row-lg-6 order-summary-information">
+        <div class="order-summary-text">
+          <h3>Order Summary</h3>
+        </div>
+        <div>
+          <h3>Order Subtotal</h3>
+        </div>
+        <div>
+          <h3>Estimated Taxes</h3>
+        </div>
+        <div class="row-lg-3 checkout-container">
+          <div class="col-lg-6 checkout">
+            Checkout
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script th:inline="javascript">
+   const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+            //toggle view
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+                //animate Links
+                navLinks.forEach((link, index) =>{
+                if(link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`;
+                }
+                });
+
+            //burger animation
+                burger.classList.toggle('toggle');
+            });
+
+
+        }
+        navSlide();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>
