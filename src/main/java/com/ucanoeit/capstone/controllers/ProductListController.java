@@ -1,4 +1,4 @@
-package com.ucanoeit.capstone.controllers.html;
+package com.ucanoeit.capstone.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

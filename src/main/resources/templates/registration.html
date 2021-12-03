@@ -88,6 +88,8 @@
 
 <body>
 
+<p th:text="${error}"></p>
+
 <div class="container" th:fragment="registration">
     <div class="row-lg-12 main">
         <div class="row-lg-12 registration-form-container" id="registration-form-container">
@@ -99,7 +101,7 @@
                     Registration Form
                 </h3>
             </div>
-            <form action="#" th:action="@{/createCustomer}" th:object="${customer}" method="post">
+            <form action="#" th:action="@{/registerCustomer}" th:object="${customer}" method="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" name="email" id="email" class="form-control" th:field="*{email}" required>

@@ -1,14 +1,15 @@
-package com.ucanoeit.capstone.controllers.html;
+package com.ucanoeit.capstone.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class CartController {
+public class LoginController {
 
-    @RequestMapping("/cart")
-    public String getCart(Model model) {
-        return "cart";
+    @RequestMapping("/login")
+    public String getLogin(Model model) {
+
+        return "login";
     }
 }
