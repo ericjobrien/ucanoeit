@@ -34,9 +34,14 @@
 
         .logo {
             color: white;
-            text-transform: uppercase;
-            letter-spacing: 5px;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-weight: bold;
             font-size: 20px;
+        }
+
+        .logo a {
+            text-decoration: none;
         }
 
         .nav-links {
@@ -142,12 +147,12 @@
 <body>
 <nav th:fragment="navbar">
   <div class="logo">
-    <h4>UCanoeIt</h4>
+    <a href="/"><img role="link" src="/images/logo.png" th:src="@{/images/logo.png}"></img></a>
   </div>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
     <li><a href="/registration">Register</a></li>
-    <li><a href="login">Login</a></li>
+    <li><a href="/login">Login</a></li>
     <li><a href="/cart">Cart</a></li>
   </ul>
   <div class="burger">

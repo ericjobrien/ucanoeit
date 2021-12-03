@@ -18,6 +18,11 @@
         font-family: 'Andada Pro', serif;
     }
 
+      table {
+        display: flex;
+        justify-content: center;
+    }
+
     .add-container {
         background-color: #B7D0DE;
         display: flex;
@@ -126,6 +131,7 @@
                             <td>Inventory</td>
                             <td>Price</td>
                             <td>Image URL</td>
+                            <td>Delete</td>
                         </tr>
                         <tr th:each="product : ${products}">
                             <td th:text="${product.id}">Product Id</td>
@@ -139,6 +145,22 @@
                             <td th:text="${product.inventory}">Inventory</td>
                             <td th:text="${product.price}">Price</td>
                             <td th:text="${product.imageurl}">Image URL</td>
+                            <td>
+                                <form th:action="@{/admin/product/delete}" th:object="${product}" method="delete">
+                                    <input type="hidden" name="id" th:value="${product.id}">
+                                    <inpput type="hidden" name="productcategoryid" th:value="${product.productcategoryid}">
+                                    <input  type="hidden" name="bramdid" th:value="${product.brandid}">
+                                    <input type="hidden" name="productname" th:value="${product.productname}">
+                                    <input type="hidden" name="width" th:value="${product.width}">
+                                    <input type="hidden" name="length" th:value="${product.length}">
+                                    <input type="hidden" name="weight" th:value="${product.weight}">
+                                    <input type="hidden" name="maxcapacity" th:value="${product.maxcapacity}">
+                                    <input type="hidden" name="inventory" th:value="${product.inventory}">
+                                    <input type="hidden" name="price" th:value="${product.price}">
+                                    <input type="hidden" name="imageurl" th:value="${product.imageurl}">
+                                    <button type="submit" name="deleteProduct" value="0">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     </table>
                 </div>

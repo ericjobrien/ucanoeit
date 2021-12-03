@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product list</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+ body{
+    font-family: 'Andada Pro', serif;
+}
+
+.products{
+
+    height: 100vh;
+    width: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: row;
+    border-radius: 15px;
+    column-gap: 1vw;
+}
+
+.product-container{
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.button-row{
+    display: flex;
+    justify-content: space-evenly;
+    background: #B7D0DE;
+    border-radius: 15px;
+}
+
+.specs {
+  margin-bottom: 1vh;
+  background: black;
+  color: white:
+}
+
+.buy{
+    background: black;
+    opacity: 75%;
+    box-shadow: 2px 2px 2px grey;
+    cursor: pointer;
+    color: white;
+    border-radius: 15px;
+    margin-right: 1vw;
+}
+
+.buy:hover{
+    opacity: 50%;
+}
+
+
+</style>
+<body>
+<div class="container">
+  <div class="row-lg-12 breadcrumbs">
+  </div>
+  <div class="col-lg-12 products" th:each="product : ${products}">
+    <div class="col-lg-3 product-container">
+      <div class="row-lg-12 image1" th:style="'background-image:url(' + ${product.imageurl} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
+
+      </div>
+      <div class="row-lg-12 specs">
+        <div class="row-lg-12">
+          <h4>Specs:</h4>
+          <div class="row-lg-6">
+            <p th:text="'Width: ' + ${product.width} + 'in'"></p>
+            <p th:text="'Length: ' + ${product.length} + 'ft'"></p>
+          </div>
+          <div class="row-lg-6">
+            <p th:text="'Weight: ' + ${product.weight} + 'lbs'"></p>
+            <p th:text="'Max Capacity: ' + ${product.maxcapacity} + 'lbs'"></p>
+          </div>
+        </div>
+        <div class="col-lg-8 product-name">
+          <h3 th:text="${product.productname}"></h3>
+        </div>
+      </div>
+      <div class="row-lg-12 button-row">
+        <div class="col-lg-6">
+          <div class="buy">Add to Cart</div>
+        </div>
+        <div class="col-lg-4 price">
+          <h4 th:text="'$'+${product.price}">Price</h4>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <script th:inline="javascript">
+   const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+            //toggle view
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+                //animate Links
+                navLinks.forEach((link, index) =>{
+                if(link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`;
+                }
+                });
+
+            //burger animation
+                burger.classList.toggle('toggle');
+            });
+
+
+        }
+        navSlide();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>
