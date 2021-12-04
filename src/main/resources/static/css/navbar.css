@@ -24,6 +24,11 @@
             font-size: 20px;
         }
 
+
+        .logo img {
+            height: 13vh;
+
+        }
         .nav-links {
 
             display: flex;

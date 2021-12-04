@@ -88,12 +88,15 @@
         background: cadetblue;
         display: flex;
         margin-top: 1vh;
+        margin-bottom: 1vh;
         border-radius: 15px;
         text-align: center;
         cursor: pointer;
         display: flex;
         justify-content: center;
         box-shadow: 2px 4px 4px grey;
+        height: 4vh;
+        text-decoration: none;
     }
 
     .checkout:hover{
@@ -111,28 +114,28 @@
   </div>
   <div class="row-lg-12 main">
     <div class="col-lg-6 product-container">
-      <div class="row product-image">
-        image
+      <div class="row product-image"  th:style="'background-image:url(' + ${product.imageurl} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
       </div>
     </div>
     <div>
       <div class="row-lg-6 description-container">
         <div class="row-lg-6 product-information">
           <div>
-            <h3>Product Name</h3>
+            <h2 th:text="${product.productname}">Product Name</h2>
           </div>
         </div>
         <div>
           <h3>Specs:</h3>
           <ul>
-            <li>Length</li>
-            <li>Weight</li>
-            <li>Max capacity</li>
+            <li th:text="'Width: ' + ${product.width} + 'in'">Length</li>
+            <li th:text="'Length: ' + ${product.length} + 'ft'">Length</li>
+            <li th:text="'Weight: ' + ${product.weight} + 'lbs'">Weight</li>
+            <li th:text="'Max Capacity: ' + ${product.maxcapacity} + 'lbs'">Max capacity</li>
           </ul>
         </div>
         <div class="row-lg-6 price">
           <div>
-            <h3>Price</h3>
+            <h3 th:text="'$' + ${product.price}">Price</h3>
           </div>
         </div>
         <div class="col-lg-12 purchase">
@@ -149,9 +152,11 @@
           </div>
         </div>
       </div>
-      <div class="row-lg-6 checkout">
-        Checkout
-      </div>
+      <a th:href="@{/cart}">
+        <div class="row-lg-6 checkout">
+          <h4>Checkout</h4>
+        </div>
+      </a>
     </div>
   </div>
 </div>
