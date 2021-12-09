@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link th:href="@{/css/navbar.css}" rel="stylesheet" media="screen"/>
 </head>
 
 <style>
@@ -315,10 +316,16 @@ input {
                     <h3>Order Summary</h3>
                 </div>
                 <div>
-                    <h3>Order Subtotal</h3>
+                    <h3 th:text="'Number of Products Ordered: ' + ${#aggregates.sum(cartItems.![quantity])}"></h3>
                 </div>
                 <div>
-                    <h3>Estimated Taxes</h3>
+                    <h3 th:text="'Order Subtotal: $' + ${#numbers.formatDecimal(#aggregates.sum(cartItems.![getTotalPrice]), 0, 2)}">Order Subtotal</h3>
+                </div>
+                <div>
+                    <h3 th:text="'Estimated Taxes: $' + ${#numbers.formatDecimal(#aggregates.sum(cartItems.![getEstimatedTaxes]), 0, 2)}">Estimated Taxes</h3>
+                </div>
+                <div>
+                    <h3 th:text="'Order Total: $' + ${#numbers.formatDecimal(#aggregates.sum(cartItems.![getTotalCost]), 0, 2)}">Estimated Taxes</h3>
                 </div>
                 <div class="row-lg-3 checkout-container">
                     <div class="col-lg-6 checkout">

@@ -70,35 +70,35 @@
   <div class="row-lg-12 breadcrumbs">
   </div>
   <div class="col-lg-12 products" th:each="product : ${products}">
-    <div class="col-lg-3 product-container">
-      <div class="row-lg-12 image1" th:style="'background-image:url(' + ${product.imageurl} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
+    <div class="col-lg-3 product-container" >
+        <div class="row-lg-12 image1" th:style="'background-image:url(' + ${product.imageurl} + '); background-repeat: no-repeat, repeat; background-size: cover;'">
 
-      </div>
-      <div class="row-lg-12 specs">
-        <div class="row-lg-12">
-          <h4>Specs:</h4>
-          <div class="row-lg-6">
-            <p th:text="'Width: ' + ${product.width} + 'in'"></p>
-            <p th:text="'Length: ' + ${product.length} + 'ft'"></p>
+        </div>
+        <div class="row-lg-12 specs">
+          <div class="row-lg-12">
+            <h4>Specs:</h4>
+            <div class="row-lg-6">
+              <p th:text="'Width: ' + ${product.width} + 'in'"></p>
+              <p th:text="'Length: ' + ${product.length} + 'ft'"></p>
+            </div>
+            <div class="row-lg-6">
+              <p th:text="'Weight: ' + ${product.weight} + 'lbs'"></p>
+              <p th:text="'Max Capacity: ' + ${product.maxcapacity} + 'lbs'"></p>
+            </div>
           </div>
-          <div class="row-lg-6">
-            <p th:text="'Weight: ' + ${product.weight} + 'lbs'"></p>
-            <p th:text="'Max Capacity: ' + ${product.maxcapacity} + 'lbs'"></p>
+          <div class="col-lg-8 product-name">
+            <h3 th:text="${product.productname}"></h3>
           </div>
         </div>
-        <div class="col-lg-8 product-name">
-          <h3 th:text="${product.productname}"></h3>
+        <div class="row-lg-12 button-row">
+          <div class="col-lg-6">
+            <button type="submit">Add to Cart</button>
+          </div>
+          <div class="col-lg-4 price">
+            <h4 th:text="'$'+ ${#numbers.formatDecimal(product.price, 0, 2)}">Price</h4>
+          </div>
         </div>
       </div>
-      <div class="row-lg-12 button-row">
-        <div class="col-lg-6">
-          <div class="buy">Add to Cart</div>
-        </div>
-        <div class="col-lg-4 price">
-          <h4 th:text="'$'+${product.price}">Price</h4>
-        </div>
-      </div>
-    </div>
 
   </div>
 </div>

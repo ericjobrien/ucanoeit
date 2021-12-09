@@ -18,6 +18,11 @@
     body{
         font-family: 'Andada Pro', serif;
     }
+
+    a {
+      text-decoration: none;
+    }
+
       .main{
         display: flex;
         flex-direction: row;
@@ -32,25 +37,12 @@
         border-radius: 15px;
     }
 
-
     .product-card {
         box-shadow: 2px 4px 4px grey;
     }
+
     .card-body{
         margin-top: 2vh;
-    }
-    .remove {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: black;
-        opacity: 75%;
-        box-shadow: 2px 4px 4px grey;
-        cursor: pointer;
-        color: white;
-        border-radius: 15px;
-        width: 50%;
-        align-self: center;
     }
 
     .card-body div:hover{
@@ -94,6 +86,7 @@
         border-radius: 15px;
         display: flex;
         justify-content: center;
+        text-decoration: none;
     }
 
     .checkout{
@@ -126,64 +119,30 @@
       <div class="row-lg-3">
         <h3>Items in Cart</h3>
       </div>
-      <div class="card mb-3 product-card" style="max-width: 470px;">
+      <div class="card mb-3 product-card" style="max-width: 470px;" th:each="cartItem : ${cartItems}">
         <div class="row g-0">
-          <div class="col-md-4">
-            <img src="https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2" class="img-fluid rounded-start" alt="...">
+          <div class="col-md-4 image-container" >
+            <img th:src="${cartItem.getProduct().getImageurl()}" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <div>
-                <button type="button" class="btn-close" aria-label="Close"></button>
+                <form th:action="@{/cart/cartItem/delete}" th:object="${cartItem}" method="delete">
+                  <input type="hidden" name="id" th:value="${cartItem.id}">
+                <button type="submit" class="btn-close" aria-label="Close"></button>
+                </form>
               </div>
               <div>
-                <h5 class="card-title">Product Name</h5>
+                <h5 class="card-title" th:text="${cartItem.getProduct().getProductname()}">Product Name</h5>
+              </div>
+              <div>
+                <h5 class="card-title" th:text="'$' + ${cartItem.getProduct().getPrice()}">Price</h5>
+              </div>
+              <div>
+                <h5 class="card-title" th:text="'Quantity: ' + ${cartItem.quantity}">Quantity</h5>
               </div>
             </div>
           </div>
-        </div>
-        <div class="remove">
-          Remove from Cart
-        </div>
-      </div>
-      <div class="card mb-3 product-card" style="max-width: 470px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2" class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <div>
-                <button type="button" class="btn-close" aria-label="Close"></button>
-              </div>
-              <div>
-                <h5 class="card-title">Product Name</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="remove">
-          Remove from Cart
-        </div>
-      </div>
-      <div class="card mb-3 product-card" style="max-width: 470px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2" class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <div>
-                <button type="button" class="btn-close" aria-label="Close"></button>
-              </div>
-              <div>
-                <h5 class="card-title">Product Name</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="remove">
-          Remove from Cart
         </div>
       </div>
     </div>
@@ -193,16 +152,24 @@
           <h3>Order Summary</h3>
         </div>
         <div>
-          <h3>Order Subtotal</h3>
+          <h3 th:text="'Number of Products Ordered: ' + ${#aggregates.sum(cartItems.![quantity])}"></h3>
         </div>
         <div>
-          <h3>Estimated Taxes</h3>
+          <h3 th:text="'Order Subtotal: $' + ${#numbers.formatDecimal(#aggregates.sum(cartItems.![getTotalPrice]), 0, 2)}">Order Subtotal</h3>
         </div>
-        <div class="row-lg-3 checkout-container">
-          <div class="col-lg-6 checkout">
-            Checkout
+        <div>
+          <h3 th:text="'Estimated Taxes: $' + ${#numbers.formatDecimal(#aggregates.sum(cartItems.![getEstimatedTaxes]), 0, 2)}">Estimated Taxes</h3>
+        </div>
+        <div>
+          <h3 th:text="'Order Total: $' + ${#numbers.formatDecimal(#aggregates.sum(cartItems.![getTotalCost]), 0, 2)}">Estimated Taxes</h3>
+        </div>
+        <a th:href="@{/checkout}">
+          <div class="row-lg-3 checkout-container">
+            <div class="col-lg-6 checkout">
+              Checkout
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

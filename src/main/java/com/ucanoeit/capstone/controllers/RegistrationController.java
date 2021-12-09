@@ -28,14 +28,17 @@ public class RegistrationController {
     @PostMapping("/registerCustomer")
     public String registerCustomer(@ModelAttribute Customer customer, Model model) {
         if (customerRepository.existsById(customer.getEmail())) {
-            model.addAttribute("error", "Customer with email address already exists");
+            model.addAttribute("trueOrFalse", "false");
             return "registration";
         } else {
 //            customer.setPassword(bcrypt(customer.getPassword()));
+
+            model.addAttribute("goToHomepage", "Go to Homepage");
             model.addAttribute("customer", customerRepository.save(customer));
+            model.addAttribute("trueOrFalse", "true");
         }
 
-        return "index";
+        return "registration";
     }
 
 }

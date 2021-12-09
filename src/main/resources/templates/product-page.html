@@ -67,22 +67,6 @@
         border-radius: 15px;
         text-align: left;
     }
-    .buy {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: black;
-        opacity: 75%;
-        box-shadow: 2px 4px 4px grey;
-        cursor: pointer;
-        color: white;
-        border-radius: 15px;
-        width: 30%;
-    }
-
-    .buy:hover{
-        opacity: 50%;
-    }
 
     .checkout{
         background: cadetblue;
@@ -118,40 +102,43 @@
       </div>
     </div>
     <div>
-      <div class="row-lg-6 description-container">
-        <div class="row-lg-6 product-information">
-          <div>
-            <h2 th:text="${product.productname}">Product Name</h2>
-          </div>
-        </div>
-        <div>
-          <h3>Specs:</h3>
-          <ul>
-            <li th:text="'Width: ' + ${product.width} + 'in'">Length</li>
-            <li th:text="'Length: ' + ${product.length} + 'ft'">Length</li>
-            <li th:text="'Weight: ' + ${product.weight} + 'lbs'">Weight</li>
-            <li th:text="'Max Capacity: ' + ${product.maxcapacity} + 'lbs'">Max capacity</li>
-          </ul>
-        </div>
-        <div class="row-lg-6 price">
-          <div>
-            <h3 th:text="'$' + ${product.price}">Price</h3>
-          </div>
-        </div>
-        <div class="col-lg-12 purchase">
-          <div class="row-lg-3 quantity">
+      <form action="#" th:action="@{/addItemToCart}" th:object="${cartItemSubmission}" method="post">
+        <div class="row-lg-6 description-container">
+          <div class="row-lg-6 product-information">
             <div>
-              <label for="quantity">Quantity</label>
-              <input type="number" id="quantity" name="quantity" min="1" max="10">
+              <h2 th:text="${product.productname}">Product Name</h2>
             </div>
           </div>
-          <div class="row-lg-4 buy">
+          <div>
+            <h3>Specs:</h3>
+            <ul>
+              <li th:text="'Width: ' + ${product.width} + 'in'">Length</li>
+              <li th:text="'Length: ' + ${product.length} + 'ft'">Length</li>
+              <li th:text="'Weight: ' + ${product.weight} + 'lbs'">Weight</li>
+              <li th:text="'Max Capacity: ' + ${product.maxcapacity} + 'lbs'">Max capacity</li>
+            </ul>
+          </div>
+          <div class="row-lg-6 price">
             <div>
-              Add to Cart
+              <h3 th:text="'$' + ${product.price}">Price</h3>
+            </div>
+          </div>
+          <div class="col-lg-12 purchase">
+            <div class="row-lg-3 quantity">
+              <div>
+                <label for="quantity">Quantity</label>
+                <input hidden th:value="${product.id}" th:attr="name='productId'">
+                <input type="number" id="quantity" name="quantity" min="1" max="10"  th:field="*{quantity}"/>
+              </div>
+            </div>
+            <div class="row-lg-4 buy">
+             <button type="submit" name="submit" value="0">
+               Add to Cart
+             </button>
             </div>
           </div>
         </div>
-      </div>
+      </form>
       <a th:href="@{/cart}">
         <div class="row-lg-6 checkout">
           <h4>Checkout</h4>
