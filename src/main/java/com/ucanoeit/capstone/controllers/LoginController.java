@@ -29,29 +29,34 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/login/customer")
+    @PostMapping("/login/customer")
     public String getLogin(@ModelAttribute Customer customer, Model model) {
 
         Optional<Customer> holdingCustomer;
         holdingCustomer = customerRepository.findById(customer.getEmail());
         model.addAttribute("customers", customerRepository.findAll());
+        int isPasswordCorrect;
 
-        System.out.println(customerRepository.findAll());
-        System.out.println(customer.getEmail());
-        System.out.println(customer.getPassword());
-        System.out.println(customerRepository.findById(customer.getEmail()));
-        System.out.println(holdingCustomer);
-        if(holdingCustomer.get().getPassword() == customer.getPassword()) {
-            return "login";
+        if (customerRepository.existsById(customer.getEmail())) {
+            holdingCustomer = customerRepository.findById(customer.getEmail());
+            isPasswordCorrect = holdingCustomer.get().getPassword().compareTo(customer.getPassword());
+            if (isPasswordCorrect == 0 && holdingCustomer.get().getAdmin() == true) {
+
+                model.addAttribute("loginSuccessful", "true");
+                return "admin";
+            } else if (isPasswordCorrect == 0 && holdingCustomer.get().getAdmin() == false){
+                model.addAttribute("loginSuccessful", "true");
+                return "index";
+            } else {
+                model.addAttribute("loginSuccessful", "false");
+                model.addAttribute("loginError", "Password incorrect!");
+                return "login";
+            }
         } else {
-            model.addAttribute("loginError", "Error with password.");
-            return "login";
+            model.addAttribute("loginSuccessful", "false");
+            model.addAttribute("loginError", "Customer with provided email address not registered");
+                return "login";
         }
-//        if (customerRepository.existsById(customer.getEmail())) {
-//            return "index";
-//        } else {
-//            model.addAttribute("loginError", "Customer not registered with email");
-//        }
-//        return "login";
     }
+
 }

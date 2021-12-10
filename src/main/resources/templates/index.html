@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link th:href="@{/css/navbar.css}" rel="stylesheet" media="screen"/>
+<!--    <script th:src="@{/javascript/navbar.js}"></script>-->
 </head>
 
 
@@ -33,7 +34,6 @@
 
         .logo {
             color: white;
-            text-transform: uppercase;
             letter-spacing: 5px;
             font-size: 20px;
         }
@@ -139,8 +139,16 @@
 
         /* Everything Above This Line is For the Nav */
 
+
+
+
         body {
             font-family: 'Andada Pro', serif;
+
+        }
+
+        .container {
+            padding-bottom: 10vh;
         }
 
         .advertisement{
@@ -173,6 +181,7 @@
             height: 50vh;
             text-align: center;
             margin-top: 1vh;
+            margin-bottom: 2vh;
         }
 
         #canoes-img{
@@ -183,6 +192,11 @@
             background-size: cover;
             background-repeat: no-repeat;
             cursor: pointer;
+            box-shadow: 2px 4px 4px black;
+        }
+
+        #canoes-img:hover {
+            opacity: 85%;
         }
 
         #kayaks-img{
@@ -193,9 +207,20 @@
             background-size: cover;
             background-repeat: no-repeat;
             cursor: pointer;
+            box-shadow: 2px 4px 4px black;
         }
 
+        #kayaks-img:hover {
+            opacity: 85%;
+        }
 
+       footer {
+          position: relative;
+          clear: both;
+          background-color: #B7D0DE;
+          height: 5vh;
+
+        }
 
     </style>
 
@@ -205,10 +230,10 @@
         <h4>UCanoeIt</h4>
     </div>
     <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Register</a></li>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Cart</a></li>
+        <a href="/index"><li>Home</li></a>
+        <a href="/registration"><li>Register</li></a>
+        <a href="/login"><li id="loginStatus">Login</li></a>
+        <a href="/cart"><li>Cart</li></a>
     </ul>
     <div class="burger">
         <div class="line1"></div>
@@ -270,9 +295,24 @@
                     //burger animation
                     burger.classList.toggle('toggle');
                 });
-
-
             }
+
+
+            const loginSuccessful = document.getElementById('loginSuccessful');
+        const loginStatus = document.getElementById('loginStatus');
+
+        function loggedInStatus() {
+            const body = document.getElementById('body');
+
+            if(loginSuccessful.innerText === 'true') {
+                loginStatus.innerText = 'Logout';
+            }
+            if(loginSuccessful.innerText === 'false') {
+                loginStatus.innerText = 'Login';
+            }
+        }
+
+            loggedInStatus();
             navSlide();
         </script>
 
@@ -282,4 +322,7 @@
 </script>
 
 </body>
+<footer th:replace="fragments/footer :: footer">
+
+</footer>
 </html>

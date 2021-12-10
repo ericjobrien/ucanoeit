@@ -35,6 +35,7 @@
         flex-direction: column;
         justify-content: space-between;
         border-radius: 15px;
+        box-shadow: 2px 4px 4px black;
     }
 
     .order-summary-information{
@@ -62,19 +63,15 @@
 
     .checkout{
         display: flex;
-        align-items: center;
         justify-content: center;
-        background: black;
-        opacity: 75%;
-        box-shadow: 2px 4px 4px grey;
-        cursor: pointer;
-        color: white;
-        border-radius: 15px;
-        align-self: center;
     }
 
-    .checkout:hover{
-        opacity: 50%;
+    .checkout button {
+        box-shadow: 2px 4px 4px black;
+    }
+
+    .checkout button:hover {
+        opacity: 85%;
     }
 
     .credit-card-form-container{
@@ -96,6 +93,7 @@
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         border-radius: 15px;
+        box-shadow: 2px 4px 4px black;
     }
 
     .credit-card-form-text {
@@ -172,7 +170,6 @@ input {
 
         .logo {
             color: white;
-            text-transform: uppercase;
             letter-spacing: 5px;
             font-size: 20px;
         }
@@ -275,7 +272,18 @@ input {
         .toggle .line3 {
             transform: rotate(45deg) translate(-5px, -6px);
         }
+.container {
+            padding-bottom: 15vh;
+        }
 
+  footer {
+          padding-top: 10vh;
+          position: relative;
+          clear: both;
+          background-color: #B7D0DE;
+          height: 5vh;
+
+        }
 </style>
 
 <body>
@@ -329,7 +337,7 @@ input {
                 </div>
                 <div class="row-lg-3 checkout-container">
                     <div class="col-lg-6 checkout">
-                        purchase
+                        <button class="btn btn-dark">Purchase</button>
                     </div>
                 </div>
             </div>
@@ -361,6 +369,19 @@ input {
 
 
         }
+
+         function loggedInStatus() {
+                const loginSuccessful = document.getElementById('loginSuccessful');
+                const loginStatus = document.getElementById('loginStatus');
+
+                    if(loginSuccessful.innerText === 'true') {
+                        loginStatus.innerText = 'Logout';
+                    } else {
+                        loginStatus.innerText = 'Login';
+                        }
+               }
+
+             loggedInStatus();
         navSlide();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -368,4 +389,5 @@ input {
         crossorigin="anonymous">
 </script>
 </body>
+<footer th:replace="fragments/footer :: footer"></footer>
 </html>

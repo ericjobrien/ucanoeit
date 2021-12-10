@@ -33,7 +33,7 @@
         column-gap: 1vh;
     }
     .registration-form-container{
-        height: 75vh;
+        height: 70vh;
         width: 40vw;
         background-color: rgb(128, 128, 128);
         border-radius: 15px;
@@ -97,10 +97,6 @@
     }
 
 
-    .success-text:hover {
-        opacity: 75%;
-    }
-
     .error {
         text-align: center;
         color: black;
@@ -118,41 +114,23 @@
     .error-alert {
         display: flex;
         justify-content: center;
-        align-self: center;
-        text-align: center;
-        align-content: center;
-        box-shadow: 2px 4px 4px black;
-        background: red;
-        color: black;
-        height: 10vh;
-        width: 15vw;
         visibility: hidden;
-        margin-top: 1vh;
-        margin-bottom: 1vh;
     }
 
     .error-alert p {
-        margin-top: 1vh;
         display: flex;
         align-items: center;
     }
 
-    .success-text {
+    .success-alert {
         display: flex;
         justify-content: center;
-        align-content: center;
-        align-self: center;
+        flex-direction: column;
         align-items: center;
-        color: white;
-        text-decoration: none;
-        box-shadow: 2px 4px 4px black;
-        margin-bottom: 1vh;
-        cursor: pointer;
-    }
-
-    #z {
         visibility: hidden;
     }
+
+   
 </style>
 
 <body>
@@ -192,11 +170,15 @@
                 <div class="registration-form-button" id="registration-button">
                     <button type="submit" name="submit" class="btn btn-primary">Register</button>
                 </div>
-                <div class="error-alert" id="y">
+                <div id="y" class="error-alert alert alert-danger alert-dismissible fade show" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
                     <p th:text="'Error, email address ' + ${customer.email} + ' already registered'">Error, email address already registered.</p>
-                    <button type="button" class="btn-close" id="error-close-button" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="error-close-button" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <div  class="success-text" id="z">
+                <div id="z" class="success-alert alert alert-success" role="alert">
+                    <p>Congrats!  You are now registered.</p>
                     <a th:href="@{/}"><button type="button" class="btn btn-success">Go to Homepage</button></a>
                 </div>
             </form>
@@ -227,11 +209,10 @@
             if(xElement.innerText === 'false') {
                 yElement.style.visibility = 'visible';
             } else if(xElement.innerText === 'true') {
-                yElement.style.visibility = 'visible';
-                yElement.style.background = 'darkgreen';
-                yElement.style.color = 'white';
-                yElement.innerText = 'Congrats! You are now registered.'
                 zElement.style.visibility = 'visible';
+            } else {
+                yElement.style.visibility = 'hidden';
+                zElement.style.visibility = 'hidden';
             }
 
             function closeAlertContainer() {
@@ -241,6 +222,7 @@
 
             errorCloseBtn.addEventListener('click', closeAlertContainer);
         }
+
     registrationAlerts();
     closeForm();
     </script>

@@ -21,4 +21,21 @@
 
 
         }
+
+        const loginSuccessful = document.getElementById('loginSuccessful');
+                const loginStatus = document.getElementById('loginStatus');
+
+                function loggedInStatus() {
+                    const body = document.getElementById('body');
+
+                    if(loginSuccessful.innerText === 'true') {
+                        loginStatus.innerText = 'Logout';
+                    }
+                    if(loginSuccessful.innerText === 'false') {
+                        loginStatus.innerText = 'Login';
+                    }
+                }
+
+
+        loggedInStatus();
         navSlide();
