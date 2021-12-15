@@ -1,0 +1,70 @@
+body{
+    font-family: 'Andada Pro', serif;
+}
+
+.products{
+
+    height: 100vh;
+    width: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: row;
+    border-radius: 15px;
+    column-gap: 1vw;
+}
+
+.product-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #B7D0DE;
+    border-radius: 10px;
+}
+
+.button-row{
+    display: flex;
+    justify-content: space-evenly;
+    background: #B7D0DE;
+    border-radius: 15px;
+}
+.image1{
+    height: 30vh;
+    width: 100%;
+    background-image: url(https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    align-self: center;
+}
+
+.image2{
+    height: 35vh;
+    width: 100%;
+    background-image: url(https://cdni.llbean.net/is/image/wim/510291_47711_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/A0211793_2);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    align-self: center;
+}
+.specs{
+    display: flex;
+    flex-direction: column;
+
+}
+.buy{
+    background: black;
+    opacity: 75%;
+    box-shadow: 2px 2px 2px grey;
+    cursor: pointer;
+    color: white;
+    border-radius: 15px;
+    margin-right: 1vw;
+}
+
+.buy:hover{
+    opacity: 50%;
+}
