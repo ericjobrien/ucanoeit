@@ -20,8 +20,8 @@ public class RegistrationController {
 
     @RequestMapping("/registration")
     public String getRegistration(Model model) {
-
         model.addAttribute("customer", new Customer());
+
         return "registration";
     }
 
@@ -36,9 +36,8 @@ public class RegistrationController {
             model.addAttribute("goToHomepage", "Go to Homepage");
             model.addAttribute("customer", customerRepository.save(customer));
             model.addAttribute("trueOrFalse", "true");
+            return "homepage";
         }
-
-        return "registration";
     }
 
 }

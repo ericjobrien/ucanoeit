@@ -1,16 +1,15 @@
 package com.ucanoeit.capstone.controllers;
 
-import com.ucanoeit.capstone.model.Customer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class HomepageController {
 
-    @RequestMapping({"/index", "/"})
-    public String getIndex(Model model) {
+    @RequestMapping("/homepage")
+        public String getHomepage(Model model) {
 
-        return "index";
+        return "homepage";
     }
 }

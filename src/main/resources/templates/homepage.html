@@ -23,125 +23,6 @@
             box-sizing: border-box;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            min-height: 8vh;
-            font-family: 'Andada Pro', serif;
-            background: #A7BED3;
-        }
-
-        .logo {
-            color: white;
-            letter-spacing: 5px;
-            font-size: 20px;
-        }
-
-        .nav-links {
-
-            display: flex;
-            justify-content: space-around;
-            width: 35%;
-            /* width will adjust nav lists distance as the media type changes */
-        }
-
-        .nav-links li {
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            letter-spacing: 3px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .burger {
-            display: none;
-        }
-
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        @media screen and (max-width:1024px) {
-            .nav-links {
-                width: 20%;
-                /* width will adjust nav lists distance as the media type changes */
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            body {
-                overflow-x: hidden;
-            }
-        }
-
-        @media screen and (max-width:768px) {
-            .nav-links {
-                position: absolute;
-                right: 0px;
-                height: 92vh;
-                top: 8vh;
-                background: #A7BED3;
-                color: white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 50%;
-                transform: translateX(100%);
-                transition: transform 0.6s ease-in;
-            }
-
-            .nav-links li {
-                opacity: 85%;
-            }
-
-            .burger {
-                display: block;
-                cursor: pointer;
-            }
-        }
-
-        .nav-active {
-            transform: translateX(0%);
-        }
-
-        @keyframes navlinkFade {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0px);
-            }
-        }
-
-        .toggle .line1 {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .toggle .line2 {
-            opacity: 0;
-        }
-
-        .toggle .line3 {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        /* Everything Above This Line is For the Nav */
-
-
-
-
         body {
             font-family: 'Andada Pro', serif;
 
@@ -226,20 +107,7 @@
 
 <body>
 <nav th:replace="fragments/navbar :: navbar">
-    <div class="logo">
-        <h4>UCanoeIt</h4>
-    </div>
-    <ul class="nav-links">
-        <a href="/index"><li>Home</li></a>
-        <a href="/registration"><li>Register</li></a>
-        <a href="/login"><li id="loginStatus">Login</li></a>
-        <a href="/cart"><li>Cart</li></a>
-    </ul>
-    <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
+    
 </nav>
 
 <div class="container">
@@ -301,18 +169,6 @@
             const loginSuccessful = document.getElementById('loginSuccessful');
         const loginStatus = document.getElementById('loginStatus');
 
-        function loggedInStatus() {
-            const body = document.getElementById('body');
-
-            if(loginSuccessful.innerText === 'true') {
-                loginStatus.innerText = 'Logout';
-            }
-            if(loginSuccessful.innerText === 'false') {
-                loginStatus.innerText = 'Login';
-            }
-        }
-
-            loggedInStatus();
             navSlide();
         </script>
 

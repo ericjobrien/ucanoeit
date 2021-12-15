@@ -63,6 +63,37 @@ footer {
     justify-content: center;
     margin-top: 2vh;
 }
+
+.update-container {
+    background: #A7BED3;
+}
+
+.update-text {
+    margin-top: 5vh;
+
+    background: #B7D0DE;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
+    border-radius: 15px;
+}
+
+#update-title {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    color: white;
+    background: #A7BED3;
+    box-shadow: 2px 4px 4px black;
+    width: 25vw;
+    border-radius: 15px;
+}
+
+#update-tables {
+    box-shadow: 2px 4px 4px black;
+}
+
 </style>
 <body>
     <nav th:replace="fragments/navbar :: navbar">
@@ -103,7 +134,7 @@ footer {
                 <input type="hidden" name="email" th:value="${customer.email}">
                 <input type="hidden" name="firstname" th:value="${customer.firstname}">
                 <input type="hidden" name="lastname" th:value="${customer.lastname}">
-                <input type="hidden" name="password" th:value="${customer.password}">
+                <input type="hidden" name="password" th:value="${customer.password}" >
                 <input type="hidden" name="admin" th:value="${customer.admin}">
                 <button type="submit" name="deleteCustomer" value="0">Delete</button>
               </form>
@@ -111,6 +142,39 @@ footer {
           </tr>
         </table>
       </div>
+
+    <div class="update-text">
+        <h2 id="update-title">Update Customers</h2>
+    </div>
+    <div class="update-container row-lg-12" th:each="customer : ${customers}" >
+
+    <form th:action="@{/admin/customer/update}" th:object="${customer}" method="post" id="update-form" class="row-lg-12">
+       <table class="table table-dark table-striped" id="update-tables">
+           <tr>
+               <td th:text="${customer.email}">
+               </td>
+                <input type="hidden" name="email" th:value="${customer.email}">
+           </tr>
+           <tr>
+               <td>
+                   <input type="text" name="firstname" th:value="${customer.firstname}">
+               </td>
+               <td>
+                   <input type="text" name="lastname" th:value="${customer.lastname}">
+               </td>
+               <td>
+                   <input type="text" name="password" th:value="${customer.password}">
+               </td>
+               <td>
+                   <input type="text" name="admin" th:value="${customer.admin}">
+               </td>
+               <td>
+                   <button type="submit" name="update-customer" value="0">update</button>
+               </td>
+           </tr>
+       </table>
+        </form>
+    </div>
 </div>
 
     <script th:inline="javascript">
@@ -138,18 +202,7 @@ footer {
      
              }
 
-              function loggedInStatus() {
-                const loginSuccessful = document.getElementById('loginSuccessful');
-                const loginStatus = document.getElementById('loginStatus');
 
-                    if(loginSuccessful.innerText === 'true') {
-                        loginStatus.innerText = 'Logout';
-                    } else {
-                        loginStatus.innerText = 'Login';
-                        }
-               }
-
-             loggedInStatus();
              navSlide();
      </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

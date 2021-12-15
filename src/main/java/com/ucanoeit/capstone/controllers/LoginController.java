@@ -21,15 +21,7 @@ public class LoginController {
         this.customerRepository = customerRepository;
     }
 
-    @RequestMapping("/login")
-    public String loginCustomer(Model model) {
-
-        model.addAttribute("customers", customerRepository.findAll());
-
-        return "login";
-    }
-
-    @PostMapping("/login/customer")
+    @PostMapping("/index/login")
     public String getLogin(@ModelAttribute Customer customer, Model model) {
 
         Optional<Customer> holdingCustomer;
@@ -46,16 +38,16 @@ public class LoginController {
                 return "admin";
             } else if (isPasswordCorrect == 0 && holdingCustomer.get().getAdmin() == false){
                 model.addAttribute("loginSuccessful", "true");
-                return "index";
+                return "homepage";
             } else {
                 model.addAttribute("loginSuccessful", "false");
                 model.addAttribute("loginError", "Password incorrect!");
-                return "login";
+                return "index";
             }
         } else {
             model.addAttribute("loginSuccessful", "false");
             model.addAttribute("loginError", "Customer with provided email address not registered");
-                return "login";
+                return "index";
         }
     }
 

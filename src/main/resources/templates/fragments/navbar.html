@@ -1,178 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Navigation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500&family=IM+Fell+English+SC&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="../static/javascript/navbar.js"></script>
+    <link th:href="@{/css/navbar.css}" rel="stylesheet" media="screen" />
+    <script src="../static/javascript/navbar.js"></script>
 </head>
-<style>
 
-      body {
-         font-family: 'Andada Pro', serif;
-      }
 
-             * {
-            margin: 0px;
-            padding: 0px;
-            box-sizing: border-box;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            min-height: 8vh;
-            font-family: 'Andada Pro', serif;
-            background: #A7BED3;
-        }
-
-        .logo {
-            color: white;
-            text-decoration: none;
-            letter-spacing: 3px;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .logo h4 {
-         text-decoration: none;
-        }
-
-        .logo a{
-            text-decoration: none;
-        }
-
-        .nav-links {
-
-            display: flex;
-            justify-content: space-around;
-            width: 35%;
-            /* width will adjust nav lists distance as the media type changes */
-        }
-
-        .nav-links li {
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            letter-spacing: 3px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .burger {
-            display: none;
-        }
-
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        @media screen and (max-width:1024px) {
-            .nav-links {
-                width: 20%;
-                /* width will adjust nav lists distance as the media type changes */
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            body {
-                overflow-x: hidden;
-            }
-        }
-
-        @media screen and (max-width:768px) {
-            .nav-links {
-                position: absolute;
-                right: 0px;
-                height: 92vh;
-                top: 8vh;
-                background: #A7BED3;
-                color: white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 50%;
-                transform: translateX(100%);
-                transition: transform 0.6s ease-in;
-            }
-
-            .nav-links li {
-                opacity: 85%;
-            }
-
-            .burger {
-                display: block;
-                cursor: pointer;
-            }
-        }
-
-        .nav-active {
-            transform: translateX(0%);
-        }
-
-        @keyframes navlinkFade {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0px);
-            }
-        }
-
-        .toggle .line1 {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .toggle .line2 {
-            opacity: 0;
-        }
-
-        .toggle .line3 {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-  </style>
 <body id="body">
     <div id="bodyDiv">
 
     </div>
 
-<nav th:fragment="navbar">
-  <p hidden id="loginSuccessful" th:text="${loginSuccessful}"></p>
-  <div class="logo">
-    <a href="/index"><h4>UCanoeIt</h4></a>
-  </div>
-  <ul class="nav-links">
+    <nav th:fragment="navbar">
+        <p hidden id="loginSuccessful" th:text="${loginSuccessful}"></p>
+        <div class="logo">
+            <a href="/homepage">
+                <h4 id="logo">UCanoeIt</h4>
+            </a>
+        </div>
+        <ul class="nav-links">
 
-    <a href="/"><li>Home</li></a>
-    <a href="/registration"><li>Register</li></a>
-    <a href="/login"><li id="loginStatus">Login</li></a>
-    <a href="/cart"><li>Cart</li></a>
-  </ul>
-  <div class="burger">
-    <div class="line1"></div>
-    <div class="line2"></div>
-    <div class="line3"></div>
-  </div>
-</nav>
-<script>
+            <a href="/homepage">
+                <li>Home</li>
+            </a>
+            <a href="/logout">
+                <li id="loginStatus">Logout</li>
+            </a>
+            <a href="/cart">
+                <li>Cart</li>
+            </a>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+    <script>
         const navSlide = () => {
             const burger = document.querySelector('.burger');
             const nav = document.querySelector('.nav-links');
@@ -182,15 +57,15 @@
             burger.addEventListener('click', () => {
                 nav.classList.toggle('nav-active');
                 //animate Links
-                navLinks.forEach((link, index) =>{
-                if(link.style.animation) {
-                    link.style.animation = '';
-                } else {
-                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`;
-                }
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 1.5}s`;
+                    }
                 });
 
-            //burger animation
+                //burger animation
                 burger.classList.toggle('toggle');
             });
         }
@@ -198,21 +73,21 @@
         const loginSuccessful = document.getElementById('loginSuccessful');
         const loginStatus = document.getElementById('loginStatus');
 
-            const body = document.getElementById('body');
-            
-            if(loginSuccessful.innerText === 'true') {
-                loginStatus.innerText = 'Logout';
-            }
-            if(loginSuccessful.innerText === 'false') {
-                loginStatus.innerText = 'Login';
-            }
+        const body = document.getElementById('body');
+
+        if (loginSuccessful.innerText === 'true') {
+            loginStatus.innerText = 'Logout';
+        }
+        if (loginSuccessful.innerText === 'false') {
+            loginStatus.innerText = 'Login';
+        }
 
 
         navSlide();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous">
-    </script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
 </body>
+
 </html>
