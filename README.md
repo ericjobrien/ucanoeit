@@ -5,13 +5,16 @@ Learn more about the developer: https://www.linkedin.com/in/eric-o-brien-35aa2a8
 UCanoeIt is a mock-up of an e-commerce website.  It has both customer and admin functionality.
 
 Customer Features:
-- View Products in both as lists and on individual product pages
+
+![Screenshot of customer homepage](/src/main/resources/static/images/CustomerPage.png)
+- View Products both as lists and on individual product pages
 - Add items to cart
 - Remove items from cart
 - Register
 - Login
 
 Admin Features:
+
 ![Screenshot of admin homepage](/src/main/resources/static/images/AdminPage.png)
 - Manage Customers: delete customers and update customer information
 - Manage Products: add products and delete products
